@@ -3,10 +3,10 @@ import { WeddingEvent, CoupleProfile } from './types';
 export const WEDDING_EVENTS: WeddingEvent[] = [
   {
     id: '1',
-    title: 'Sangeet & Mehendi',
-    date: 'December 12, 2024',
+    title: 'Tilak Ceremony',
+    date: 'February 04, 2025',
     time: '6:30 PM Onwards',
-    location: 'Ganges Grand Resort',
+    location: 'Gali NO 3',
     address: 'Near Assi Ghat, Varanasi, UP',
     description: 'A vibrant evening of traditional music, henna, and dance performances. Let the rhythm of the Ghats move you!',
     icon: 'music',
@@ -15,7 +15,7 @@ export const WEDDING_EVENTS: WeddingEvent[] = [
   {
     id: '2',
     title: 'Shubh Haldi',
-    date: 'December 13, 2024',
+    date: 'February 06, 2025',
     time: '10:00 AM',
     location: 'Riverside Courtyard',
     address: 'Varanasi, Uttar Pradesh',
@@ -26,7 +26,7 @@ export const WEDDING_EVENTS: WeddingEvent[] = [
   {
     id: '3',
     title: 'The Wedding (Vivah)',
-    date: 'December 13, 2024',
+    date: 'February 10, 2024',
     time: '7:00 PM',
     location: 'Heritage Palace Grounds',
     address: 'Varanasi, Uttar Pradesh',
@@ -34,17 +34,6 @@ export const WEDDING_EVENTS: WeddingEvent[] = [
     icon: 'ring',
     mapUrl: 'https://maps.app.goo.gl/7Wm7n3bMxYSbT14Q6'
   },
-  {
-    id: '4',
-    title: 'Grand Reception',
-    date: 'December 14, 2024',
-    time: '8:00 PM',
-    location: 'The Royal Atrium',
-    address: 'City Center, Varanasi',
-    description: 'A formal evening to celebrate the newlywed couple with fine dining and heartfelt toasts.',
-    icon: 'party',
-    mapUrl: 'https://maps.app.goo.gl/7Wm7n3bMxYSbT14Q6'
-  }
 ];
 
 export const COUPLE_DATA: CoupleProfile[] = [

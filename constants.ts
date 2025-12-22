@@ -4,10 +4,10 @@ export const WEDDING_EVENTS: WeddingEvent[] = [
   {
     id: '1',
     title: 'Tilak Ceremony',
-    date: 'February 04, 2025',
-    time: '6:30 PM Onwards',
-    location: 'Gali NO 3',
-    address: 'Near Assi Ghat, Varanasi, UP',
+    date: 'February 04, 2026',
+    time: '6:00 PM Onwards',
+    location: 'Buxar, Bihar',
+    address: 'VishwaMitra Colony, Near Baba Dhram Kanta ,Golomber , Buxar , Bihar',
     description: 'A vibrant evening of traditional music, henna, and dance performances. Let the rhythm of the Ghats move you!',
     icon: 'music',
     mapUrl: 'https://maps.app.goo.gl/7Wm7n3bMxYSbT14Q6'
@@ -15,10 +15,10 @@ export const WEDDING_EVENTS: WeddingEvent[] = [
   {
     id: '2',
     title: 'Shubh Haldi',
-    date: 'February 06, 2025',
+    date: 'February 06, 2026',
     time: '10:00 AM',
-    location: 'Riverside Courtyard',
-    address: 'Varanasi, Uttar Pradesh',
+    location: 'Buxar, Bihar',
+    address: 'VishwaMitra Colony, Near Baba Dhram Kanta ,Golomber , Buxar , Bihar',
     description: 'A sun-kissed morning where we drench the couple in turmeric and love. Dress code: Sunshine Yellow.',
     icon: 'sun',
     mapUrl: 'https://maps.app.goo.gl/7Wm7n3bMxYSbT14Q6'
@@ -26,10 +26,10 @@ export const WEDDING_EVENTS: WeddingEvent[] = [
   {
     id: '3',
     title: 'The Wedding (Vivah)',
-    date: 'February 10, 2024',
+    date: 'February 10, 2026',
     time: '7:00 PM',
-    location: 'Heritage Palace Grounds',
-    address: 'Varanasi, Uttar Pradesh',
+    location: 'Buxar, Bihar',
+    address: 'Rajwada Palace, Dalsagar, Buxar, Bihar',
     description: 'Witness the sacred Pheras and the union of Abhay and Tannu in the holy city of Kashi.',
     icon: 'ring',
     mapUrl: 'https://maps.app.goo.gl/7Wm7n3bMxYSbT14Q6'
@@ -56,17 +56,17 @@ export const COUPLE_DATA: CoupleProfile[] = [
         { id: 'gp1', name: 'Lt. Ram Tiwari', relation: 'Grandfather', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop', bio: 'The pillar of our family values.' }
       ],
       parents: [
-        { id: 'p1', name: 'Mr. Rajesh Tiwari', relation: 'Father', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop', bio: 'A retired army officer with a strict discipline but a soft heart.' },
-        { id: 'p2', name: 'Mrs. Sunita Tiwari', relation: 'Mother', image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop', bio: 'The sweetest soul and the best cook in Varanasi.' }
+        { id: 'p1', name: 'Mr. Mithilesh Kumar Tiwari', relation: 'Father', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop', bio: 'A retired army officer with a strict discipline but a soft heart.' },
+        { id: 'p2', name: 'Mrs. Sunita Devi', relation: 'Mother', image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop', bio: 'The sweetest soul and the best cook in Varanasi.' }
       ],
       siblings: [
-        { id: 's1', name: 'Rohan Tiwari', relation: 'Brother', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop', bio: 'Tech enthusiast and Abhay’s partner in crime.' }
+        { id: 's1', name: 'Amritesh Tiwari', relation: 'Brother', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop', bio: 'Tech enthusiast and Abhay’s partner in crime.' }
       ]
     }
   },
   {
     id: 'bride',
-    name: 'Tannu Kuwer',
+    name: 'Tannu Kunwar',
     title: 'The Bride',
     images: [
       'https://images.unsplash.com/photo-1616782299839-4467c6b9b3e1?q=80&w=1000&auto=format&fit=crop',
@@ -83,8 +83,8 @@ export const COUPLE_DATA: CoupleProfile[] = [
         { id: 'gp2', name: 'Mrs. Leela Kuwer', relation: 'Grandmother', image: 'https://images.unsplash.com/photo-1551843022-4cc71848a716?q=80&w=200&auto=format&fit=crop', bio: 'Our storyteller and guardian angel.' }
       ],
       parents: [
-        { id: 'p3', name: 'Mr. Vikram Kuwer', relation: 'Father', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop', bio: 'A businessman who taught Tannu to aim for the stars.' },
-        { id: 'p4', name: 'Mrs. Anjali Kuwer', relation: 'Mother', image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop', bio: 'A professor of literature and Tannu’s best friend.' }
+        { id: 'p3', name: 'Mr. RadheyShyam Kunwar', relation: 'Father', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop', bio: 'A businessman who taught Tannu to aim for the stars.' },
+        { id: 'p4', name: 'Mrs. Laxmi Devi', relation: 'Mother', image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop', bio: 'A professor of literature and Tannu’s best friend.' }
       ],
       siblings: [
         { id: 's2', name: 'Kavya Kuwer', relation: 'Sister', image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop', bio: 'Fashionista and the official wedding planner.' }

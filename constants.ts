@@ -30,7 +30,7 @@ export const WEDDING_EVENTS: WeddingEvent[] = [
     time: '7:00 PM',
     location: 'Buxar, Bihar',
     address: 'Rajwada Palace, Dalsagar, Buxar, Bihar',
-    description: 'Witness the sacred Pheras and the union of Abhay and Tannu in the holy city of Kashi.',
+    description: 'Witness the sacred Pheras and the union of Abhay and Tannu in the holy city of Buxar.',
     icon: 'ring',
     mapUrl: 'https://maps.app.goo.gl/7Wm7n3bMxYSbT14Q6'
   },

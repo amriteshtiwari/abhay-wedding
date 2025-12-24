@@ -13,7 +13,7 @@
   }
 */
 
-const GOOGLE_SCRIPT_URL = ''; // Replace with your actual deployment URL if you have one.
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzGowpUjpiNZQFxUyis5lreLnqkRyjSY-F0OJz9LsAEG-n3yRLWbvYmKAuyNHIrSjskUQ/exec'; // Replace with your actual deployment URL if you have one.
 
 export const submitRSVPToSheet = async (name: string, guests: number): Promise<boolean> => {
   console.log(`Submitting RSVP for ${name} with ${guests} guests...`);

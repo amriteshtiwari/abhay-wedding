@@ -77,7 +77,7 @@ const RSVP: React.FC = () => {
                         type="text"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        placeholder="e.g. The Sharma Family"
+                        placeholder="e.g. The Tiwari Family"
                         className="w-full px-4 py-3 border-b-2 border-wedding-gold/50 bg-orange-50/50 focus:border-wedding-red focus:bg-white focus:outline-none transition-all font-serif text-xl placeholder-gray-400 text-gray-800 rounded-t-lg"
                       />
                     </div>

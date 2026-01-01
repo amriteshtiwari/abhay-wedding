@@ -80,7 +80,7 @@ const App: React.FC = () => {
           <p className="font-decorative text-3xl mb-4">Abhay & Tannu</p>
           <p className="text-sm uppercase tracking-[0.3em] text-white/80 mb-8">Forever & Always</p>
           <p className="text-xs text-white/40 font-sans">
-            &copy; 2024 The Royal Union. Made with love & blessings.
+            &copy; 2026 TEAM CODING HALT.
           </p>
         </div>
       </footer>

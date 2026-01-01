@@ -28,7 +28,7 @@ const Hero: React.FC = () => {
           
           {/* Top Motif */}
           <div className="mb-6 flex justify-center">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Ganesha_vector_image.svg/1200px-Ganesha_vector_image.svg.png" alt="Ganesha" className="h-24 w-auto opacity-80" />
+            <img src="/images/127.jpg" alt="Ganesha" className="h-24 w-auto opacity-80" />
           </div>
 
           <p className="text-deep-maroon font-serif italic text-lg md:text-xl mb-4">
@@ -52,10 +52,10 @@ const Hero: React.FC = () => {
           </div>
 
           <p className="text-deep-maroon text-xl md:text-2xl font-serif font-bold mb-2">
-            December 12 - 14, 2024
+            February 04 - 10, 2026
           </p>
           <p className="text-gray-700 font-sans tracking-wide mb-10">
-            Varanasi, Uttar Pradesh
+            Buxar, Bihar
           </p>
           
           <a 

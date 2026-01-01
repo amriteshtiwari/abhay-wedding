@@ -16,7 +16,7 @@ export const WEDDING_EVENTS: WeddingEvent[] = [
     id: '2',
     title: 'Shubh Haldi',
     date: 'February 06, 2026',
-    time: '10:00 AM',
+    time: '10:00 AM Onwards',
     location: 'Buxar, Bihar',
     address: 'VishwaMitra Colony, Near Baba Dhram Kanta ,Golomber , Buxar , Bihar',
     description: 'A sun-kissed morning where we drench the couple in turmeric and love. Dress code: Sunshine Yellow.',
@@ -27,7 +27,7 @@ export const WEDDING_EVENTS: WeddingEvent[] = [
     id: '3',
     title: 'The Wedding (Vivah)',
     date: 'February 10, 2026',
-    time: '7:00 PM',
+    time: '7:00 PM Onwards',
     location: 'Buxar, Bihar',
     address: 'Rajwada Palace, Dalsagar, Buxar, Bihar',
     description: 'Witness the sacred Pheras and the union of Abhay and Tannu in the holy city of Buxar.',
@@ -42,25 +42,25 @@ export const COUPLE_DATA: CoupleProfile[] = [
     name: 'Abhay Tiwari',
     title: 'The Groom',
     images: [
-      'https://images.unsplash.com/photo-1595986790924-a3d53754f9a0?q=80&w=1000&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1586723223945-8c764b8d745c?q=80&w=1000&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=1000&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1000&auto=format&fit=crop'
+      '/images/abhay-1.jpeg',
+      '/images/abhay-2.jpeg',
+      '/images/abhay-3.jpeg',
+      '/images/abhay-4.jpeg',
+      '/images/abhay-5.jpeg'
     ],
     introduction: "Abhay is a man of few words but a heart full of gold. Known for his calm demeanor and witty humor, he lights up every room he enters. An avid traveler and a photography enthusiast, he believes in capturing moments rather than just living them.",
-    work: "Senior Architect at Skyline Designs. Abhay has designed sustainable housing projects across 3 continents.",
-    education: "Masters in Architecture from IIT Bombay. B.Arch from SPA Delhi.",
+    work: "Senior Software Engineer at Corecard. Abhay is passionate about building scalable web applications and exploring new technologies.",
+    education: "B.tech in Machinical Engineering at Bansal Institute of Science and Technology, Bhopal.",
     family: {
       grandParents: [
-        { id: 'gp1', name: 'Lt. Ram Tiwari', relation: 'Grandfather', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop', bio: 'The pillar of our family values.' }
+        { id: 'gp1', name: 'Ravindra Nath Tiwari', relation: 'Grandfather', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop', bio: 'The pillar of our family values.' }
       ],
       parents: [
         { id: 'p1', name: 'Mr. Mithilesh Kumar Tiwari', relation: 'Father', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop', bio: 'A retired army officer with a strict discipline but a soft heart.' },
         { id: 'p2', name: 'Mrs. Sunita Devi', relation: 'Mother', image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop', bio: 'The sweetest soul and the best cook in Varanasi.' }
       ],
       siblings: [
-        { id: 's1', name: 'Amritesh Tiwari', relation: 'Brother', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop', bio: 'Tech enthusiast and Abhay’s partner in crime.' }
+        { id: 's1', name: 'Amritesh Tiwari', relation: 'Brother', image: '/images/amritesh.jpeg', bio: 'Tech enthusiast and Abhay’s partner in crime.' }
       ]
     }
   },
@@ -69,11 +69,11 @@ export const COUPLE_DATA: CoupleProfile[] = [
     name: 'Tannu Kunwar',
     title: 'The Bride',
     images: [
-      'https://images.unsplash.com/photo-1616782299839-4467c6b9b3e1?q=80&w=1000&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1588665042459-002f664b4c78?q=80&w=1000&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1558282716-e9105311802d?q=80&w=1000&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1000&auto=format&fit=crop'
+      '/images/tannu-1.jpeg',
+      '/images/tannu-2.jpeg',
+      '/images/tannu-3.jpeg',
+      '/images/tannu-4.jpeg',
+      '/images/tannu-5.jpeg'
     ],
     introduction: "Tannu is the life of the party and a dreamer at heart. With a contagious laugh and an artistic soul, she finds beauty in the smallest of things. She loves classical dance and has trained in Kathak for 15 years.",
     work: "Lead UI/UX Designer at Creative Pulse. Tannu crafts digital experiences that users fall in love with.",

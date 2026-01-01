@@ -53,11 +53,11 @@ export const COUPLE_DATA: CoupleProfile[] = [
     education: "B.tech in Machinical Engineering at Bansal Institute of Science and Technology, Bhopal.",
     family: {
       grandParents: [
-        { id: 'gp1', name: 'Ravindra Nath Tiwari', relation: 'Grandfather', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop', bio: 'The pillar of our family values.' }
+        { id: 'gp1', name: 'Ravindra Nath Tiwari', relation: 'Grandfather', image: '/images/rabindra.jpeg', bio: 'The pillar of our family values.' }
       ],
       parents: [
-        { id: 'p1', name: 'Mr. Mithilesh Kumar Tiwari', relation: 'Father', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop', bio: 'A retired army officer with a strict discipline but a soft heart.' },
-        { id: 'p2', name: 'Mrs. Sunita Devi', relation: 'Mother', image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop', bio: 'The sweetest soul and the best cook in Varanasi.' }
+        { id: 'p1', name: 'Mr. Mithilesh Kumar Tiwari', relation: 'Father', image: '/images/m.jpeg', bio: 'A Sub inspector with a strict discipline but a soft heart.' },
+        { id: 'p2', name: 'Mrs. Sunita Devi', relation: 'Mother', image: '/images/s.jpeg', bio: 'The sweetest soul and the best cook in .' }
       ],
       siblings: [
         { id: 's1', name: 'Amritesh Tiwari', relation: 'Brother', image: '/images/amritesh.jpeg', bio: 'Tech enthusiast and Abhay’s partner in crime.' }

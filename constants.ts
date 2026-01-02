@@ -80,14 +80,16 @@ export const COUPLE_DATA: CoupleProfile[] = [
     education: "Masters in Design from NID Ahmedabad. Bachelors in Fine Arts.",
     family: {
       grandParents: [
-        { id: 'gp2', name: 'Mrs. Leela Kuwer', relation: 'Grandmother', image: 'https://images.unsplash.com/photo-1551843022-4cc71848a716?q=80&w=200&auto=format&fit=crop', bio: 'Our storyteller and guardian angel.' }
       ],
       parents: [
-        { id: 'p3', name: 'Mr. RadheyShyam Kunwar', relation: 'Father', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop', bio: 'A businessman who taught Tannu to aim for the stars.' },
-        { id: 'p4', name: 'Mrs. Laxmi Devi', relation: 'Mother', image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop', bio: 'A professor of literature and Tannu’s best friend.' }
+        { id: 'p3', name: 'Mr. RadheyShyam Kunwar', relation: 'Father', image: '/images/radhey.jpeg', bio: '' },
+        { id: 'p4', name: 'Mrs. Laxmi Devi', relation: 'Mother', image: '/images/laxmi.jpeg', bio: '' }
       ],
       siblings: [
-        { id: 's2', name: 'Kavya Kuwer', relation: 'Sister', image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop', bio: 'Fashionista and the official wedding planner.' }
+        { id: 's2', name: 'Durga', relation: 'Sister', image: '/images/durga.jpeg', bio: '' },
+        { id: 's2', name: 'Pooja', relation: 'Sister', image: '/images/pooja.jpeg', bio: '' },
+        { id: 's2', name: 'Omprakash Kuwer', relation: 'Brother', image: '/images/om.jpeg', bio: '' },
+        { id: 's2', name: 'Jai prakash Kuwer', relation: 'Brother', image: '/images/Jai.jpeg', bio: '' }
       ]
     }
   }

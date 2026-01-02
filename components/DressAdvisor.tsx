@@ -1,13 +1,14 @@
+
 import React, { useState, useRef } from 'react';
-import { Camera, Sparkles, Loader2, Upload, Shirt } from 'lucide-react';
-import { suggestOutfits } from '../services/geminiService';
-import { OutfitSuggestion } from '../types';
+import { Camera, Sparkles, Loader2, RefreshCw, Download, User, Users } from 'lucide-react';
+import { generateRoyalLook } from '../services/geminiService';
 
 const DressAdvisor: React.FC = () => {
-  const [image, setImage] = useState<string | null>(null);
+  const [sourceImage, setSourceImage] = useState<string | null>(null);
+  const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [suggestions, setSuggestions] = useState<OutfitSuggestion[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [gender, setGender] = useState<'masculine' | 'feminine' | 'neutral'>('neutral');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,146 +16,186 @@ const DressAdvisor: React.FC = () => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        const base64String = reader.result as string;
-        setImage(base64String);
-        setSuggestions([]); 
+        setSourceImage(reader.result as string);
+        setGeneratedImage(null);
         setError(null);
       };
       reader.readAsDataURL(file);
     }
   };
 
-  const handleAnalyze = async () => {
-    if (!image) return;
+  const handleGenerate = async () => {
+    if (!sourceImage) return;
     setLoading(true);
     setError(null);
     try {
-      const results = await suggestOutfits(image);
-      setSuggestions(results);
+      const result = await generateRoyalLook(sourceImage, gender);
+      setGeneratedImage(result);
     } catch (err) {
-      setError("Failed to generate suggestions. Please try again.");
+      setError("The AI Stylist is busy. Please try again in a moment.");
+      console.error(err);
     } finally {
       setLoading(false);
     }
   };
 
-  const triggerFileInput = () => {
-    fileInputRef.current?.click();
+  const downloadImage = () => {
+    if (!generatedImage) return;
+    const link = document.createElement('a');
+    link.href = generatedImage;
+    link.download = 'My-Royal-Look.png';
+    link.click();
   };
 
+  const triggerFileInput = () => fileInputRef.current?.click();
+
   return (
-    <section className="py-24 bg-gradient-to-b from-white to-wedding-cream px-4 scroll-mt-28" id="stylist">
+    <section className="py-24 bg-wedding-cream px-4 scroll-mt-28" id="stylist">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center p-4 bg-deep-maroon rounded-full shadow-lg mb-6 text-wedding-gold ring-4 ring-wedding-gold/30">
             <Sparkles className="w-8 h-8" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-decorative text-deep-maroon mb-4">Royal Attire Consultant</h2>
+          <h2 className="text-4xl md:text-5xl font-decorative text-deep-maroon mb-4">Shringar AI Mirror</h2>
           <div className="w-24 h-1 bg-wedding-gold mx-auto mb-6"></div>
           <p className="text-gray-600 font-serif text-lg max-w-2xl mx-auto italic">
-            "Every wedding is a royal affair." <br/>
-            Allow our AI stylist to suggest the perfect traditional ensemble for you.
+            Experience the royalty of Varanasi. <br/>
+            Upload your photo and let our AI "dress" you in exquisite wedding couture.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Input Section */}
-          <div className="lg:col-span-4 bg-white p-8 rounded-2xl shadow-xl border-t-4 border-wedding-red">
-            <div 
-              className={`aspect-[3/4] rounded-xl border-2 border-dashed border-wedding-gold/50 flex flex-col items-center justify-center cursor-pointer transition-colors bg-orange-50/30 ${!image ? 'hover:bg-orange-50' : ''}`}
-              onClick={triggerFileInput}
-            >
-              {image ? (
-                <img src={image} alt="Uploaded" className="w-full h-full object-cover rounded-xl shadow-inner" />
-              ) : (
-                <div className="text-center p-6">
-                  <div className="w-16 h-16 bg-wedding-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Camera className="w-8 h-8 text-wedding-gold" />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          {/* Controls & Upload */}
+          <div className="lg:col-span-4 space-y-8">
+            <div className="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-wedding-red">
+              <h3 className="text-xl font-decorative text-deep-maroon mb-6 text-center">Step 1: Your Photo</h3>
+              
+              <div 
+                className={`aspect-[3/4] rounded-xl border-2 border-dashed border-wedding-gold/50 flex flex-col items-center justify-center cursor-pointer transition-all overflow-hidden bg-orange-50/30 hover:bg-orange-50 relative ${sourceImage ? 'border-solid' : ''}`}
+                onClick={triggerFileInput}
+              >
+                {sourceImage ? (
+                  <>
+                    <img src={sourceImage} alt="Source" className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity">
+                      <p className="text-white font-bold">Change Photo</p>
+                    </div>
+                  </>
+                ) : (
+                  <div className="text-center p-6">
+                    <Camera className="w-12 h-12 text-wedding-gold mx-auto mb-4" />
+                    <p className="text-deep-maroon font-bold">Upload Portrait</p>
+                    <p className="text-xs text-gray-400 mt-2">Clear face shots work best</p>
                   </div>
-                  <p className="text-deep-maroon font-bold text-lg">Upload Photo</p>
-                  <p className="text-sm text-gray-500 mt-2 font-serif">We will analyze your features to suggest colors & styles</p>
-                </div>
-              )}
-              <input 
-                type="file" 
-                ref={fileInputRef} 
-                className="hidden" 
-                accept="image/*" 
-                onChange={handleImageUpload} 
-              />
-            </div>
-
-            <button
-              onClick={handleAnalyze}
-              disabled={!image || loading}
-              className={`w-full mt-8 py-4 rounded-lg font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-lg ${
-                !image || loading 
-                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed' 
-                  : 'bg-deep-maroon text-wedding-gold hover:bg-wedding-red'
-              }`}
-            >
-              {loading ? (
-                <>
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                  Consulting Stylist...
-                </>
-              ) : (
-                <>
-                  <Sparkles className="w-5 h-5" />
-                  Get Suggestions
-                </>
-              )}
-            </button>
-            {error && <p className="text-red-500 text-sm mt-3 text-center">{error}</p>}
-          </div>
-
-          {/* Results Section */}
-          <div className="lg:col-span-8">
-            {!loading && suggestions.length === 0 && !image && (
-               <div className="h-full flex flex-col items-center justify-center p-12 bg-white/50 rounded-2xl border-2 border-dashed border-gray-200 text-center">
-                 <Shirt className="w-20 h-20 text-gray-200 mb-6" />
-                 <h3 className="text-xl font-decorative text-gray-400">Your personalized style awaits</h3>
-               </div>
-            )}
-
-            {!loading && suggestions.length === 0 && image && !error && (
-              <div className="h-full flex items-center justify-center p-12 bg-white/50 rounded-2xl border-2 border-dashed border-gray-200">
-                <p className="text-deep-maroon font-serif italic text-xl">Creating your royal lookbook...</p>
+                )}
               </div>
-            )}
+              <input type="file" ref={fileInputRef} className="hidden" accept="image/*" onChange={handleImageUpload} />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {suggestions.map((item, idx) => (
-                <div key={idx} className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden group animate-fade-in-up" style={{animationDelay: `${idx * 150}ms`}}>
-                  <div className="h-2 bg-gradient-to-r from-wedding-red to-deep-maroon"></div>
-                  <div className="p-6">
-                    <h3 className="text-2xl font-decorative text-deep-maroon mb-3 group-hover:text-wedding-red transition-colors">{item.name}</h3>
-                    <p className="text-gray-600 mb-6 font-serif leading-relaxed border-b border-gray-100 pb-4">{item.description}</p>
-                    
-                    <div className="mb-4">
-                      <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Palette</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {item.colorPalette.map((color, cIdx) => (
-                          <span key={cIdx} className="px-3 py-1 bg-gray-50 text-deep-maroon text-xs font-bold rounded-full border border-gray-200 shadow-sm">
-                            {color}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="bg-orange-50 p-4 rounded-lg mb-4">
-                      <h4 className="text-xs font-bold text-wedding-gold uppercase tracking-widest mb-1">Stylist's Note</h4>
-                      <p className="text-sm text-deep-maroon italic">{item.matchReason}</p>
-                    </div>
-                    
-                    <div>
-                       <p className="text-xs text-gray-500 font-semibold uppercase tracking-wide">Tip: <span className="text-gray-700 normal-case font-serif">{item.stylingTips}</span></p>
-                    </div>
-                  </div>
+              <div className="mt-8 space-y-4">
+                <p className="text-center text-xs font-bold uppercase tracking-widest text-gray-400">Choose Style Preference</p>
+                <div className="flex gap-2">
+                  {[
+                    { id: 'feminine', label: 'Lehenga', icon: <User className="w-4 h-4" /> },
+                    { id: 'masculine', label: 'Sherwani', icon: <User className="w-4 h-4" /> },
+                    { id: 'neutral', label: 'Indo-West', icon: <Users className="w-4 h-4" /> }
+                  ].map((opt) => (
+                    <button
+                      key={opt.id}
+                      onClick={() => setGender(opt.id as any)}
+                      className={`flex-1 py-2 px-1 rounded-lg text-xs font-bold border transition-all flex flex-col items-center gap-1 ${
+                        gender === opt.id 
+                          ? 'bg-deep-maroon text-wedding-gold border-wedding-gold shadow-md' 
+                          : 'bg-white text-gray-400 border-gray-200 hover:border-wedding-gold'
+                      }`}
+                    >
+                      {opt.icon}
+                      {opt.label}
+                    </button>
+                  ))}
                 </div>
-              ))}
+              </div>
+
+              <button
+                onClick={handleGenerate}
+                disabled={!sourceImage || loading}
+                className={`w-full mt-8 py-4 rounded-full font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-lg ${
+                  !sourceImage || loading 
+                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
+                    : 'bg-deep-maroon text-wedding-gold hover:bg-wedding-red hover:scale-[1.02]'
+                }`}
+              >
+                {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Sparkles className="w-5 h-5" />}
+                {generatedImage ? 'Try Different Look' : 'Generate Royal Look'}
+              </button>
+              {error && <p className="text-red-500 text-xs mt-4 text-center font-bold">{error}</p>}
             </div>
           </div>
+
+          {/* AI Result Area */}
+          <div className="lg:col-span-8">
+            <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden min-h-[500px] border-8 border-double border-wedding-gold/20 flex flex-col items-center justify-center p-4">
+              
+              {!loading && !generatedImage && (
+                <div className="text-center space-y-6 max-w-md animate-pulse">
+                  <div className="w-32 h-32 bg-wedding-gold/5 rounded-full flex items-center justify-center mx-auto border-4 border-dashed border-wedding-gold/20">
+                    <RefreshCw className="w-12 h-12 text-wedding-gold/20" />
+                  </div>
+                  <h3 className="text-2xl font-decorative text-gray-300">Your Portrait Will Appear Here</h3>
+                  <p className="text-gray-400 font-serif">Upload your photo and select a style to begin the transformation.</p>
+                </div>
+              )}
+
+              {loading && (
+                <div className="text-center space-y-8 py-12">
+                   <div className="relative">
+                      <div className="w-48 h-48 rounded-full border-4 border-wedding-gold border-t-transparent animate-spin mx-auto"></div>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                         <Sparkles className="w-12 h-12 text-wedding-gold animate-bounce" />
+                      </div>
+                   </div>
+                   <div>
+                     <p className="text-2xl font-decorative text-deep-maroon">Invoking the Royal Stylist...</p>
+                     <p className="text-wedding-red font-serif mt-2">Crafting your bespoke Varanasi attire</p>
+                   </div>
+                </div>
+              )}
+
+              {generatedImage && !loading && (
+                <div className="w-full max-w-2xl animate-fade-in-up">
+                  <div className="relative group">
+                    {/* The Royal Frame */}
+                    <div className="absolute -inset-4 border-[12px] border-double border-wedding-gold pointer-events-none z-10 opacity-60"></div>
+                    <img 
+                      src={generatedImage} 
+                      alt="Your Royal Look" 
+                      className="w-full h-auto rounded-sm shadow-2xl block"
+                    />
+                    
+                    {/* Overlay Actions */}
+                    <div className="absolute bottom-6 right-6 flex gap-4 z-20">
+                      <button 
+                        onClick={downloadImage}
+                        className="bg-white/90 backdrop-blur p-4 rounded-full text-deep-maroon shadow-xl hover:bg-wedding-red hover:text-white transition-all transform hover:scale-110"
+                        title="Download Portrait"
+                      >
+                        <Download className="w-6 h-6" />
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-12 text-center">
+                    <h4 className="text-3xl font-decorative text-deep-maroon mb-2">You look breathtaking!</h4>
+                    <p className="text-gray-500 font-serif italic">This ensemble is inspired by the heritage of Kashi.</p>
+                  </div>
+                </div>
+              )}
+
+              {/* Decorative background for the mirror */}
+              <div className="absolute inset-0 bg-mandala-pattern opacity-[0.03] pointer-events-none"></div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

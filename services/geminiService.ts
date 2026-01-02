@@ -1,6 +1,5 @@
 
-import { GoogleGenAI, Type } from "@google/genai";
-import { OutfitSuggestion } from '../types';
+import { GoogleGenAI } from "@google/genai";
 
 const getClient = () => {
   const apiKey = process.env.API_KEY;
@@ -10,28 +9,39 @@ const getClient = () => {
   return new GoogleGenAI({ apiKey });
 };
 
-export const suggestOutfits = async (base64Image: string): Promise<OutfitSuggestion[]> => {
+/**
+ * Uses Gemini to generate a "Royal Look" by editing the user's uploaded image.
+ * It transforms their clothes into high-end Indian wedding attire.
+ */
+export const generateRoyalLook = async (base64Image: string, genderPreference: 'masculine' | 'feminine' | 'neutral'): Promise<string> => {
   const ai = getClient();
-
-  // Helper to strip the data URL prefix if present (though the SDK often handles this, it's safer to send raw base64 or construct the part correctly)
-  const base64Data = base64Image.replace(/^data:image\/\w+;base64,/, "");
   
+  // Strip prefix
+  const base64Data = base64Image.replace(/^data:image\/\w+;base64,/, "");
+
+  const attireType = genderPreference === 'feminine' 
+    ? 'a heavy Banarasi Silk Lehenga with intricate gold zari work and a royal dupatta' 
+    : genderPreference === 'masculine'
+    ? 'a regal Zardosi Sherwani with a silk stole and a traditional Safa (turban)'
+    : 'a premium Indo-Western silk ensemble with ethnic embroidery';
+
   const prompt = `
-    You are an expert Indian wedding fashion stylist. 
-    Analyze the person in the uploaded image (consider gender, apparent body type, and skin tone).
-    Suggest 3 distinct, stylish, and culturally appropriate Indian wedding guest outfits for them.
-    The suggestions should be suitable for a festive, high-end Indian wedding.
-    Be specific about fabrics (e.g., Silk, Georgette, Velvet) and colors.
+    This is a photo of a wedding guest. Please generate a new image where you:
+    1. KEEP the person's exact face, expression, and physical identity.
+    2. CHANGE their outfit to ${attireType} suitable for a royal wedding in Varanasi.
+    3. The outfit should look like high-end couture (Sabyasachi/Manish Malhotra style).
+    4. PLACE them in a blurred, elegant background of a royal Indian palace courtyard with marigold decorations.
+    5. Ensure the lighting is warm and festive.
   `;
 
   try {
     const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
+      model: 'gemini-2.5-flash-image',
       contents: {
         parts: [
           {
             inlineData: {
-              mimeType: 'image/jpeg', // Assuming jpeg/png, the SDK is flexible but specific is good. 
+              mimeType: 'image/jpeg',
               data: base64Data
             }
           },
@@ -39,35 +49,25 @@ export const suggestOutfits = async (base64Image: string): Promise<OutfitSuggest
         ]
       },
       config: {
-        responseMimeType: 'application/json',
-        responseSchema: {
-          type: Type.ARRAY,
-          items: {
-            type: Type.OBJECT,
-            properties: {
-              name: { type: Type.STRING, description: "Name of the outfit style (e.g. 'Floral Lehenga', 'Classic Sherwani')" },
-              description: { type: Type.STRING, description: "Detailed description of the outfit components and fabric." },
-              colorPalette: { 
-                type: Type.ARRAY, 
-                items: { type: Type.STRING },
-                description: "List of 2-3 matching colors for this outfit."
-              },
-              stylingTips: { type: Type.STRING, description: "Accessories or footwear recommendations." },
-              matchReason: { type: Type.STRING, description: "Why this fits the user's features and the event." }
-            },
-            required: ["name", "description", "colorPalette", "stylingTips", "matchReason"]
-          }
+        imageConfig: {
+          aspectRatio: "3:4"
         }
       }
     });
 
-    if (response.text) {
-      const data = JSON.parse(response.text);
-      return data as OutfitSuggestion[];
+    // Find the image part in candidates
+    const candidate = response.candidates?.[0];
+    if (!candidate) throw new Error("No response from AI");
+
+    for (const part of candidate.content.parts) {
+      if (part.inlineData) {
+        return `data:image/png;base64,${part.inlineData.data}`;
+      }
     }
-    return [];
+
+    throw new Error("AI did not return an image part.");
   } catch (error) {
-    console.error("Error generating outfit suggestions:", error);
+    console.error("Error generating royal look:", error);
     throw error;
   }
 };

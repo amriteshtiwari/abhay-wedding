@@ -75,9 +75,9 @@ export const COUPLE_DATA: CoupleProfile[] = [
       '/images/tannu-4.jpeg',
       '/images/tannu-5.jpeg'
     ],
-    introduction: "Tannu is the life of the party and a dreamer at heart. With a contagious laugh and an artistic soul, she finds beauty in the smallest of things. She loves classical dance and has trained in Kathak for 15 years.",
-    work: "Lead UI/UX Designer at Creative Pulse. Tannu crafts digital experiences that users fall in love with.",
-    education: "Masters in Design from NID Ahmedabad. Bachelors in Fine Arts.",
+    introduction: "Tannu is the life of the party and a dreamer at heart. With a contagious laugh and an artistic soul, she finds beauty in the smallest of things.",
+    work: "Database Coordinator at GST office. Tannu is dedicated to maintaining data integrity and ensuring smooth database operations.",
+    education: "Bachelors of Arts from Delhi University.",
     family: {
       grandParents: [
       ],
